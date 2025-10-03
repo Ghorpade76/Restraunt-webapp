@@ -124,23 +124,43 @@
         .restaurant-image {
             width: 100%;
             height: 220px;
-            background: linear-gradient(135deg, #5B67D6 0%, #7B68B8 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
             position: relative;
+            overflow: hidden;
+            background: #f3f4f6;
         }
 
-        .restaurant-image::after {
-            content: '';
+        .restaurant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .restaurant-card:hover .restaurant-image img {
+            transform: scale(1.08);
+        }
+
+        .restaurant-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            padding: 24px 20px 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .restaurant-card:hover .restaurant-overlay {
+            opacity: 1;
+        }
+
+        .restaurant-name-overlay {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .restaurant-info {
@@ -428,7 +448,7 @@
                 name: "Bella Italia",
                 cuisine: "Italian",
                 description: "Authentic Italian cuisine with fresh pasta and wood-fired pizzas",
-                icon: "🍕",
+                image: "attached_assets/stock_images/italian_restaurant_i_6341ba14.jpg",
                 menu: [
                     { name: "Margherita Pizza", price: "$14.99", description: "Fresh mozzarella, tomato sauce, and basil" },
                     { name: "Spaghetti Carbonara", price: "$16.99", description: "Creamy pasta with pancetta and parmesan" },
@@ -442,7 +462,7 @@
                 name: "Sushi Master",
                 cuisine: "Japanese",
                 description: "Premium sushi and sashimi crafted by expert chefs",
-                icon: "🍣",
+                image: "attached_assets/stock_images/japanese_sushi_resta_0be4c220.jpg",
                 menu: [
                     { name: "Salmon Sashimi", price: "$22.99", description: "Fresh Norwegian salmon, thinly sliced" },
                     { name: "Dragon Roll", price: "$16.99", description: "Eel, avocado, cucumber topped with sliced avocado" },
@@ -456,7 +476,7 @@
                 name: "Taco Fiesta",
                 cuisine: "Mexican",
                 description: "Vibrant Mexican flavors with handmade tortillas and fresh ingredients",
-                icon: "🌮",
+                image: "attached_assets/stock_images/mexican_restaurant_t_ff56fee0.jpg",
                 menu: [
                     { name: "Street Tacos", price: "$12.99", description: "Three tacos with carnitas, onions, and cilantro" },
                     { name: "Burrito Bowl", price: "$13.99", description: "Rice, beans, meat, guacamole, and salsa" },
@@ -470,7 +490,7 @@
                 name: "Le Petit Bistro",
                 cuisine: "French",
                 description: "Classic French dishes in a cozy, elegant atmosphere",
-                icon: "🥖",
+                image: "attached_assets/stock_images/french_bistro_elegan_fd80a0d0.jpg",
                 menu: [
                     { name: "French Onion Soup", price: "$9.99", description: "Caramelized onions with gruyere cheese crust" },
                     { name: "Coq au Vin", price: "$26.99", description: "Braised chicken in red wine with mushrooms" },
@@ -484,7 +504,7 @@
                 name: "Spice of India",
                 cuisine: "Indian",
                 description: "Aromatic curries and tandoori specialties from North and South India",
-                icon: "🍛",
+                image: "attached_assets/stock_images/indian_restaurant_cu_e4177ee5.jpg",
                 menu: [
                     { name: "Chicken Tikka Masala", price: "$15.99", description: "Grilled chicken in creamy tomato sauce" },
                     { name: "Lamb Vindaloo", price: "$17.99", description: "Spicy lamb curry with potatoes" },
@@ -498,7 +518,7 @@
                 name: "Dragon Wok",
                 cuisine: "Chinese",
                 description: "Traditional Chinese cuisine with Szechuan and Cantonese specialties",
-                icon: "🥡",
+                image: "attached_assets/stock_images/chinese_restaurant_w_a8679517.jpg",
                 menu: [
                     { name: "Kung Pao Chicken", price: "$14.99", description: "Spicy stir-fry with peanuts and vegetables" },
                     { name: "Sweet & Sour Pork", price: "$15.99", description: "Crispy pork with tangy sauce and pineapple" },
@@ -532,7 +552,12 @@
                 card.onclick = () => showMenu(restaurant);
                 
                 card.innerHTML = `
-                    <div class="restaurant-image">${restaurant.icon}</div>
+                    <div class="restaurant-image">
+                        <img src="${restaurant.image}" alt="${restaurant.name}">
+                        <div class="restaurant-overlay">
+                            <span class="restaurant-name-overlay">${restaurant.name}</span>
+                        </div>
+                    </div>
                     <div class="restaurant-info">
                         <div class="restaurant-name">${restaurant.name}</div>
                         <div class="restaurant-cuisine">${restaurant.cuisine}</div>
