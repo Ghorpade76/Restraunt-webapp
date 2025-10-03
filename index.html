@@ -182,7 +182,16 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .restaurant-location {
+            color: #6b7280;
+            font-size: 0.875rem;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .restaurant-description {
@@ -448,13 +457,14 @@
                 name: "Bella Italia",
                 cuisine: "Italian",
                 description: "Authentic Italian cuisine with fresh pasta and wood-fired pizzas",
+                location: "Bandra West, Mumbai",
                 image: "attached_assets/stock_images/italian_restaurant_i_6341ba14.jpg",
                 menu: [
-                    { name: "Margherita Pizza", price: "$14.99", description: "Fresh mozzarella, tomato sauce, and basil" },
-                    { name: "Spaghetti Carbonara", price: "$16.99", description: "Creamy pasta with pancetta and parmesan" },
-                    { name: "Lasagna Bolognese", price: "$18.99", description: "Layers of pasta with rich meat sauce and béchamel" },
-                    { name: "Risotto ai Funghi", price: "$17.99", description: "Creamy mushroom risotto with porcini" },
-                    { name: "Tiramisu", price: "$8.99", description: "Classic Italian dessert with espresso and mascarpone" }
+                    { name: "Margherita Pizza", price: "₹1,249", description: "Fresh mozzarella, tomato sauce, and basil" },
+                    { name: "Spaghetti Carbonara", price: "₹1,399", description: "Creamy pasta with pancetta and parmesan" },
+                    { name: "Lasagna Bolognese", price: "₹1,599", description: "Layers of pasta with rich meat sauce and béchamel" },
+                    { name: "Risotto ai Funghi", price: "₹1,499", description: "Creamy mushroom risotto with porcini" },
+                    { name: "Tiramisu", price: "₹749", description: "Classic Italian dessert with espresso and mascarpone" }
                 ]
             },
             {
@@ -462,13 +472,14 @@
                 name: "Sushi Master",
                 cuisine: "Japanese",
                 description: "Premium sushi and sashimi crafted by expert chefs",
+                location: "Colaba, Mumbai",
                 image: "attached_assets/stock_images/japanese_sushi_resta_0be4c220.jpg",
                 menu: [
-                    { name: "Salmon Sashimi", price: "$22.99", description: "Fresh Norwegian salmon, thinly sliced" },
-                    { name: "Dragon Roll", price: "$16.99", description: "Eel, avocado, cucumber topped with sliced avocado" },
-                    { name: "Tuna Tataki", price: "$19.99", description: "Seared tuna with ponzu sauce and scallions" },
-                    { name: "Chirashi Bowl", price: "$24.99", description: "Assorted sashimi over sushi rice" },
-                    { name: "Miso Soup", price: "$4.99", description: "Traditional Japanese soup with tofu and seaweed" }
+                    { name: "Salmon Sashimi", price: "₹1,899", description: "Fresh Norwegian salmon, thinly sliced" },
+                    { name: "Dragon Roll", price: "₹1,399", description: "Eel, avocado, cucumber topped with sliced avocado" },
+                    { name: "Tuna Tataki", price: "₹1,649", description: "Seared tuna with ponzu sauce and scallions" },
+                    { name: "Chirashi Bowl", price: "₹2,099", description: "Assorted sashimi over sushi rice" },
+                    { name: "Miso Soup", price: "₹399", description: "Traditional Japanese soup with tofu and seaweed" }
                 ]
             },
             {
@@ -476,13 +487,14 @@
                 name: "Taco Fiesta",
                 cuisine: "Mexican",
                 description: "Vibrant Mexican flavors with handmade tortillas and fresh ingredients",
+                location: "Andheri West, Mumbai",
                 image: "attached_assets/stock_images/mexican_restaurant_t_ff56fee0.jpg",
                 menu: [
-                    { name: "Street Tacos", price: "$12.99", description: "Three tacos with carnitas, onions, and cilantro" },
-                    { name: "Burrito Bowl", price: "$13.99", description: "Rice, beans, meat, guacamole, and salsa" },
-                    { name: "Quesadilla", price: "$11.99", description: "Grilled tortilla with cheese and your choice of meat" },
-                    { name: "Enchiladas Verdes", price: "$14.99", description: "Chicken enchiladas with green tomatillo sauce" },
-                    { name: "Churros", price: "$6.99", description: "Fried dough pastries with cinnamon sugar and chocolate" }
+                    { name: "Street Tacos", price: "₹1,099", description: "Three tacos with carnitas, onions, and cilantro" },
+                    { name: "Burrito Bowl", price: "₹1,149", description: "Rice, beans, meat, guacamole, and salsa" },
+                    { name: "Quesadilla", price: "₹999", description: "Grilled tortilla with cheese and your choice of meat" },
+                    { name: "Enchiladas Verdes", price: "₹1,249", description: "Chicken enchiladas with green tomatillo sauce" },
+                    { name: "Churros", price: "₹579", description: "Fried dough pastries with cinnamon sugar and chocolate" }
                 ]
             },
             {
@@ -490,13 +502,14 @@
                 name: "Le Petit Bistro",
                 cuisine: "French",
                 description: "Classic French dishes in a cozy, elegant atmosphere",
+                location: "Worli, Mumbai",
                 image: "attached_assets/stock_images/french_bistro_elegan_fd80a0d0.jpg",
                 menu: [
-                    { name: "French Onion Soup", price: "$9.99", description: "Caramelized onions with gruyere cheese crust" },
-                    { name: "Coq au Vin", price: "$26.99", description: "Braised chicken in red wine with mushrooms" },
-                    { name: "Beef Bourguignon", price: "$28.99", description: "Tender beef stew with pearl onions and carrots" },
-                    { name: "Ratatouille", price: "$18.99", description: "Provençal vegetable medley" },
-                    { name: "Crème Brûlée", price: "$9.99", description: "Vanilla custard with caramelized sugar top" }
+                    { name: "French Onion Soup", price: "₹829", description: "Caramelized onions with gruyere cheese crust" },
+                    { name: "Coq au Vin", price: "₹2,249", description: "Braised chicken in red wine with mushrooms" },
+                    { name: "Beef Bourguignon", price: "₹2,399", description: "Tender beef stew with pearl onions and carrots" },
+                    { name: "Ratatouille", price: "₹1,579", description: "Provençal vegetable medley" },
+                    { name: "Crème Brûlée", price: "₹829", description: "Vanilla custard with caramelized sugar top" }
                 ]
             },
             {
@@ -504,13 +517,14 @@
                 name: "Spice of India",
                 cuisine: "Indian",
                 description: "Aromatic curries and tandoori specialties from North and South India",
+                location: "Powai, Mumbai",
                 image: "attached_assets/stock_images/indian_restaurant_cu_e4177ee5.jpg",
                 menu: [
-                    { name: "Chicken Tikka Masala", price: "$15.99", description: "Grilled chicken in creamy tomato sauce" },
-                    { name: "Lamb Vindaloo", price: "$17.99", description: "Spicy lamb curry with potatoes" },
-                    { name: "Palak Paneer", price: "$14.99", description: "Cottage cheese in creamy spinach gravy" },
-                    { name: "Biryani", price: "$16.99", description: "Fragrant basmati rice with spiced meat" },
-                    { name: "Garlic Naan", price: "$3.99", description: "Freshly baked flatbread with garlic and butter" }
+                    { name: "Chicken Tikka Masala", price: "₹1,329", description: "Grilled chicken in creamy tomato sauce" },
+                    { name: "Lamb Vindaloo", price: "₹1,499", description: "Spicy lamb curry with potatoes" },
+                    { name: "Palak Paneer", price: "₹1,249", description: "Cottage cheese in creamy spinach gravy" },
+                    { name: "Biryani", price: "₹1,399", description: "Fragrant basmati rice with spiced meat" },
+                    { name: "Garlic Naan", price: "₹329", description: "Freshly baked flatbread with garlic and butter" }
                 ]
             },
             {
@@ -518,13 +532,14 @@
                 name: "Dragon Wok",
                 cuisine: "Chinese",
                 description: "Traditional Chinese cuisine with Szechuan and Cantonese specialties",
+                location: "Lower Parel, Mumbai",
                 image: "attached_assets/stock_images/chinese_restaurant_w_a8679517.jpg",
                 menu: [
-                    { name: "Kung Pao Chicken", price: "$14.99", description: "Spicy stir-fry with peanuts and vegetables" },
-                    { name: "Sweet & Sour Pork", price: "$15.99", description: "Crispy pork with tangy sauce and pineapple" },
-                    { name: "Mapo Tofu", price: "$13.99", description: "Spicy tofu in fermented bean sauce" },
-                    { name: "Peking Duck", price: "$32.99", description: "Crispy duck with pancakes and hoisin sauce" },
-                    { name: "Fried Rice", price: "$11.99", description: "Wok-fried rice with egg and vegetables" }
+                    { name: "Kung Pao Chicken", price: "₹1,249", description: "Spicy stir-fry with peanuts and vegetables" },
+                    { name: "Sweet & Sour Pork", price: "₹1,329", description: "Crispy pork with tangy sauce and pineapple" },
+                    { name: "Mapo Tofu", price: "₹1,149", description: "Spicy tofu in fermented bean sauce" },
+                    { name: "Peking Duck", price: "₹2,749", description: "Crispy duck with pancakes and hoisin sauce" },
+                    { name: "Fried Rice", price: "₹999", description: "Wok-fried rice with egg and vegetables" }
                 ]
             }
         ];
@@ -561,6 +576,7 @@
                     <div class="restaurant-info">
                         <div class="restaurant-name">${restaurant.name}</div>
                         <div class="restaurant-cuisine">${restaurant.cuisine}</div>
+                        <div class="restaurant-location">📍 ${restaurant.location}</div>
                         <div class="restaurant-description">${restaurant.description}</div>
                     </div>
                 `;
