@@ -18,13 +18,17 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f7f7f7;
             min-height: 100vh;
-            padding: 0;
+            width: 100vw;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1040px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
             padding: 0 clamp(1.5rem, 2vw, 2.25rem);
+            background: transparent;
         }
 
         header {
@@ -66,6 +70,47 @@
             outline: none;
             flex: 1;
             padding: 14px 20px;
+                    /* Desktop enhancements */
+                    @media (min-width: 1024px) {
+                        .container {
+                            padding: 0 3rem;
+                        }
+                        .restaurants-grid {
+                            grid-template-columns: repeat(3, 1fr);
+                        }
+                        .restaurant-card {
+                            min-height: 480px;
+                        }
+                        .modal-content {
+                            max-width: 900px;
+                        }
+                        .menu-section {
+                            padding: 48px;
+                        }
+                    }
+                    /* Small devices */
+                    @media (max-width: 480px) {
+                        header {
+                            padding: 18px 8px;
+                        }
+                        h1 {
+                            font-size: 1.25rem;
+                        }
+                        .search-box input {
+                            font-size: 0.9rem;
+                            padding: 10px 12px;
+                        }
+                        .restaurant-card {
+                            min-height: 320px;
+                        }
+                        .modal-content {
+                            margin: 2px;
+                            padding: 2px;
+                        }
+                        .menu-section {
+                            padding: 12px 4px;
+                        }
+                    }
             font-size: 1rem;
             font-family: 'Inter', sans-serif;
             color: #1f2937;
