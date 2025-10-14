@@ -709,4 +709,156 @@
         displayRestaurants(currentRestaurants);
     </script>
 </body>
+            <!-- Floating Chat Button -->
+            <button id="chat-toggle-btn" style="position: fixed; bottom: 24px; right: 24px; z-index: 2147483647; background: linear-gradient(135deg, #5B67D6 0%, #7B68B8 100%); color: white; border: none; border-radius: 50%; width: 72px; height: 72px; box-shadow: 0 4px 16px rgba(91,103,214,0.18); font-size: 2.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s;">💬</button>
+            <!-- Simple Chat Window (hidden by default) -->
+                <div id="simple-chat-window" style="position: fixed; bottom: 110px; right: 24px; z-index: 2147483646; width: 480px; height: 510px; background: #fff; border-radius: 20px; box-shadow: 0 8px 32px rgba(31,41,55,0.18); display: none; flex-direction: column; overflow: hidden; transition: width 0.2s, height 0.2s;">
+                    <div style="background: linear-gradient(135deg, #5B67D6 0%, #7B68B8 100%); color: white; padding: 16px 24px; font-weight: 600; font-size: 1.2rem;">Chat Assistant</div>
+                    <div id="chat-messages" style="flex: 1; padding: 18px; font-size: 1.1rem; color: #333; overflow-y: auto; display: flex; flex-direction: column;"><div>Hi! How can I help you?</div></div>
+                    <div style="display: flex; border-top: 1px solid #eee;">
+                    <input id="chat-input" type="text" placeholder="Type your question..." style="flex: 1; padding: 10px; font-size: 1rem; border: none; outline: none;">
+                    </div>
+                    <button id="close-chat-btn" onclick="document.getElementById('simple-chat-window').style.display='none'" style="background: #eee; color: #333; border: none; border-radius: 0 0 20px 20px; padding: 12px; width: 100%; cursor: pointer; font-size: 1.1rem; transition: background 0.2s, color 0.2s;">Close</button>
+                </div>
+            <style>
+                @media (max-width: 600px) {
+                    #simple-chat-window {
+                        width: 98vw !important;
+                        height: 60vh !important;
+                        right: 1vw !important;
+                        bottom: 90px !important;
+                        border-radius: 12px !important;
+                    }
+                    #chat-toggle-btn {
+                        width: 56px !important;
+                        height: 56px !important;
+                        font-size: 1.5rem !important;
+                    }
+                }
+                #chat-toggle-btn:hover, #chat-toggle-btn:active {
+                    transform: scale(1.12);
+                    box-shadow: 0 8px 32px rgba(91,103,214,0.28);
+                    background: linear-gradient(135deg, #7B68B8 0%, #5B67D6 100%);
+                }
+                #close-chat-btn:hover, #close-chat-btn:active {
+                    background: #5B67D6 !important;
+                    color: #fff !important;
+                }
+            </style>
+            <script>
+                        document.getElementById('chat-toggle-btn').onclick = function(e) {
+                            var chatWin = document.getElementById('simple-chat-window');
+                            chatWin.style.display = (chatWin.style.display === 'none' || chatWin.style.display === '') ? 'flex' : 'none';
+                        };
+
+                        // Simple JS bot logic using restaurants array
+                                        var chatInput = document.getElementById('chat-input');
+                                        chatInput.addEventListener('keydown', function(e) {
+                                            if (e.key === 'Enter') {
+                                                var input = chatInput.value.trim();
+                                                if (!input) return;
+                                                var messages = document.getElementById('chat-messages');
+                                                var userMsg = document.createElement('div');
+                                                userMsg.style.alignSelf = 'flex-end';
+                                                userMsg.style.background = '#e5e7eb';
+                                                userMsg.style.borderRadius = '12px';
+                                                userMsg.style.margin = '4px 0';
+                                                userMsg.style.padding = '8px 12px';
+                                                userMsg.textContent = input;
+                                                messages.appendChild(userMsg);
+                                                messages.scrollTop = messages.scrollHeight;
+                                                chatInput.value = '';
+
+                                                // Bot response logic
+                                                var reply = '';
+                                                var lower = input.toLowerCase();
+                                                // Price comparison: "compare price of <item>"
+                                                var compareMatch = lower.match(/compare price[s]? of ([a-zA-Z ]+)/);
+                                                if (compareMatch) {
+                                                    var itemName = compareMatch[1].trim().toLowerCase();
+                                                    var foundPrices = [];
+                                                    for (var r of restaurants) {
+                                                        for (var m of r.menu) {
+                                                            if (m.name.toLowerCase().includes(itemName)) {
+                                                                foundPrices.push(`<b>${m.name}</b> at <b>${r.name}</b>: ${m.price}`);
+                                                            }
+                                                        }
+                                                    }
+                                                    reply = foundPrices.length ? foundPrices.join('<br>') : 'Sorry, could not find that item in any restaurant.';
+                                                }
+                                                // Total cost calculation: "total cost of <item1> and <item2> at <restaurant>"
+                                                else if (lower.match(/total cost of ([a-zA-Z ]+(?: and [a-zA-Z ]+)*) at ([a-zA-Z ]+)/)) {
+                                                    var totalMatch = lower.match(/total cost of ([a-zA-Z ]+(?: and [a-zA-Z ]+)*) at ([a-zA-Z ]+)/);
+                                                    var items = totalMatch[1].split(' and ').map(s => s.trim().toLowerCase());
+                                                    var restName = totalMatch[2].trim().toLowerCase();
+                                                    var foundRest = restaurants.find(r => r.name.toLowerCase() === restName);
+                                                    if (foundRest) {
+                                                        var total = 0;
+                                                        var details = [];
+                                                        for (var item of items) {
+                                                            var menuItem = foundRest.menu.find(m => m.name.toLowerCase().includes(item));
+                                                            if (menuItem) {
+                                                                var priceNum = parseInt(menuItem.price.replace(/[^\d]/g, ''));
+                                                                total += priceNum;
+                                                                details.push(`${menuItem.name}: ${menuItem.price}`);
+                                                            } else {
+                                                                details.push(`${item}: Not found`);
+                                                            }
+                                                        }
+                                                        reply = details.join('<br>') + `<br><b>Total: ₹${total}</b>`;
+                                                    } else {
+                                                        reply = 'Sorry, I could not find that restaurant.';
+                                                    }
+                                                }
+                                                // Check for menu of a specific restaurant
+                                                else {
+                                                    var menuMatch = lower.match(/menu of ([a-zA-Z ]+)/);
+                                                    if (menuMatch) {
+                                                        var restName = menuMatch[1].trim().toLowerCase();
+                                                        var foundRest = restaurants.find(r => r.name.toLowerCase() === restName);
+                                                        if (foundRest) {
+                                                            reply = `<b>${foundRest.name}</b> (${foundRest.cuisine})<br>Menu:<br>` + foundRest.menu.map(m => `${m.name} - ${m.price}`).join('<br>');
+                                                        } else {
+                                                            reply = 'Sorry, I could not find that restaurant.';
+                                                        }
+                                                    } else if (lower.includes('menu')) {
+                                                        reply = 'Here are our restaurants and their cuisines:<br>' + restaurants.map(r => `<b>${r.name}</b> (${r.cuisine})`).join('<br>');
+                                                    } else if (lower.includes('address') || lower.includes('location')) {
+                                                        reply = 'Here are the restaurant addresses:<br>' + restaurants.map(r => `<b>${r.name}</b>: ${r.location}`).join('<br>');
+                                                    } else if (lower.includes('price') || lower.includes('cost')) {
+                                                        reply = 'Sample prices:<br>' + restaurants.map(r => `<b>${r.name}</b>: ${r.menu[0].name} - ${r.menu[0].price}`).join('<br>');
+                                                    } else {
+                                                        // Try to match restaurant name or menu item
+                                                        var found = false;
+                                                        for (var r of restaurants) {
+                                                            if (lower.includes(r.name.toLowerCase())) {
+                                                                reply = `<b>${r.name}</b> (${r.cuisine})<br>Location: ${r.location}<br>Menu:<br>` + r.menu.map(m => `${m.name} - ${m.price}`).join('<br>');
+                                                                found = true;
+                                                                break;
+                                                            }
+                                                            for (var m of r.menu) {
+                                                                if (lower.includes(m.name.toLowerCase())) {
+                                                                    reply = `${m.name} at <b>${r.name}</b> costs ${m.price}.<br>Description: ${m.description}`;
+                                                                    found = true;
+                                                                    break;
+                                                                }
+                                                            }
+                                                            if (found) break;
+                                                        }
+                                                        if (!reply) reply = "Sorry, I can answer questions about menu, restaurant names, addresses, or pricing.";
+                                                    }
+                                                }
+                                                var botMsg = document.createElement('div');
+                                                botMsg.style.alignSelf = 'flex-start';
+                                                botMsg.style.background = 'linear-gradient(135deg, #5B67D6 0%, #7B68B8 100%)';
+                                                botMsg.style.color = 'white';
+                                                botMsg.style.borderRadius = '12px';
+                                                botMsg.style.margin = '4px 0';
+                                                botMsg.style.padding = '8px 12px';
+                                                botMsg.innerHTML = reply;
+                                                messages.appendChild(botMsg);
+                                                messages.scrollTop = messages.scrollHeight;
+                                            }
+                                        });
+            </script>
 </html>

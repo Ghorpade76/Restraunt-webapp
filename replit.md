@@ -99,3 +99,5 @@ Based on typical restaurant search application requirements:
 - CSS preprocessor (Sass/LESS) for advanced styling
 - JavaScript bundler (Webpack/Vite) if modularization is required
 - Minification tools for production optimization
+
+contributions by Prashant Kudtarkar, Sujay Jadhav, vaibhavi Kamble
